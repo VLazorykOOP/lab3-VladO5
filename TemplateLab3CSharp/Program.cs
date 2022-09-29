@@ -18,6 +18,7 @@ Console.WriteLine(" my animal " + animals[0].ToString());
 animals[1] = new Animal(100,10,"Cow");
 animals[2] = new Animal(102, 12, "Cow Big");
 animals[3] = new Animal(100, 10, "Zebra");
+/// 
 
 for(int i = 0; i < 4; i++)
 {
