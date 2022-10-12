@@ -1,99 +1,174 @@
-﻿// See https://aka.ms/new-console-template for more information
-using MyTask;
-
-/// <summary>
-///  Top-level statements 
-///  Код програми (оператори)  вищого рівня
-/// </summary>
-/// 
-Console.WriteLine("Hello, World!");
-//
-//  Приклад коду
-//
-
-Animal[] animals = new Animal[4];
-animals[0] = new Animal();
-animals[0].Name = "Bizon"; animals[0].WWeight=100;
-Console.WriteLine(" my animal " + animals[0].ToString());
-animals[1] = new Animal(100,10,"Cow");
-animals[2] = new Animal(102, 12, "Cow Big");
-animals[3] = new Animal(100, 10, "Zebra");
-/// 
-
-for(int i = 0; i < 4; i++)
+﻿/*
+class DRomb
 {
-    Console.WriteLine("  animal " + i + " " + animals[i].ToString());
+    protected int d1 = 3;
+    protected int d2 = 5;
+    protected string color = "Red";
+
+    public void Printd1()
+    {
+        Console.WriteLine($"d1 = {d1}");
+    }
+
+    public void Printd2()
+    {
+        Console.WriteLine($"d2 = {d2}");
+    }
+    public DRomb()
+    {
+        Console.WriteLine("Ромб = " + d1 + "," + d2 + "," + color);
+    }
+
+    public void Perimeter()
+    {
+        double p = 2 * Math.Sqrt(d1 ^ 2 + d2 ^ 2);
+        Console.WriteLine($"Perimeter ={p}");
+    }
+    public void Area()
+    {
+        double scube = (d1 ^ 2)/2;
+        double s = (d1 * d2) / 2;
+        if(s == scube)
+        {
+            Console.WriteLine("Квадрат");
+        }
+        else
+        {
+            Console.WriteLine("Ромб");
+        }
+        Console.WriteLine(s);
+    }
+    public int diag1
+    {
+        get
+        {
+            return d1;
+        }
+        set
+        {
+            d1 = value;
+        }
+    }
+    public int diag2
+    {
+        get
+        {
+            return d2;
+        }
+        set
+        {
+            d2 = value;
+        }
+    }
+    public string colors
+    {
+        get
+        {
+            return color;
+        }
+    }
+
 }
 
 
-Big b = new Big();
-Console.WriteLine(" Big" + b +"   "+ b.ToString() + "  " + b.Name);
-
-Console.WriteLine(" Task 2");
-Task2.Run();
-     
-
-/// <summary>
-///  Закічення  іструкцій верхнього рівня
-/// Top-level statements must precede namespace and type declarations.
-/// Оператори верхнього рівня мають передувати оголошенням простору імен і типу.
-///   
-/// </summary>
-class Big
+class Program
 {
-    private string name =" First init";
-    public Big()
+    static void Main(string[] args)
     {
-        name = "NoName";
+        DRomb romb = new DRomb();
+        romb.Printd1();
+        romb.Printd2();
+        romb.Perimeter();
+        romb.Area();
+        romb.diag1 = 4;
+        int d1 = romb.diag1;
+        Console.WriteLine("Нова діагональ 1 =" + d1);
+        romb.diag2 = 4;
+        int d2 = romb.diag2;
+        Console.WriteLine("Нова діагональ 2 =" + d2);
+        string color = romb.colors;
+        Console.WriteLine("Колір ромба=" + color);
     }
-    public Big(string name)
+}
+*/
+
+using static System.Net.Mime.MediaTypeNames;
+
+class bookshop
+{
+
+    public virtual bool availability { get; set; }
+    public virtual int price { get; set; }
+    public virtual string name { get; set; }
+    public virtual string author { get; set; }
+
+
+
+    public void show()
+    {
+        Console.WriteLine(name + " " + author + " " + price + " " + availability);
+    }
+
+
+    public bookshop(string name, string author)
     {
         this.name = name;
-        
-    }
-    public string Name { 
-        get { return name; } 
-        set { name = value; }
+        this.author = author;
     }
 
-};
-namespace MyTask
+
+}
+
+class Journal : bookshop
 {
-    static class Task2
-        {
-       public  static void Run()
-        {
-            Drv d = new Drv("RRR");
-            Console.WriteLine(" rrr  " + d.ToString());
-        }
-        }
-    class Base
+    public Journal(string name, string author, int price, bool availability) : base(name, author)
     {
-        string NameBase;
-        protected string any_Inform;
-        int type = 0;
-        public int numobj = 0;
-        public Base() {
-            NameBase = "Base";
-            any_Inform = "";
+        this.name = name;
+        this.author = author;
+        this.price = price;
+        this.availability = availability;
+    }
 
-        }
-        public void Show()
-        {
-            Console.WriteLine(" Show Base " + NameBase);
-        }
-    };
+}
 
-    class Drv :  Base
+class Book : Journal
+{
+    public Book(string name, string author, int price, bool availability) : base(name, author, price, availability)
     {
-        Drv()
-        {
-            numobj = 10;
-        }
-       public Drv(string any_Inform)
-        {
-            numobj = 11;
-            this.any_Inform = any_Inform;
-        }
+        this.name = name;
+        this.author = author;
+        this.price = price;
+        this.availability = availability;
+    }
+
+}
+
+class Textbook : Book
+{
+    public Textbook(string name, string author, int price, bool availability) : base(name, author, price, availability)
+    {
+        this.name = name;
+        this.author = author;
+        this.price = price;
+        this.availability = availability;
+    }
+
+}
+class Program
+{
+    static void Main(string[] args)
+    {
+        bookshop bookshop = new bookshop("Tom", "Johnson");
+        Journal journal = new Journal("Klaus", "Huten", 80, true);
+        Book book = new Book("Valentine", "Smith", 110, true);
+        Textbook textbook = new Textbook("Jack", "Cooper", 140, false);
+        Console.WriteLine();
+        bookshop.show();
+        Console.WriteLine();
+        journal.show();
+        Console.WriteLine();
+        book.show();
+        Console.WriteLine();
+        textbook.show();
     }
 }
