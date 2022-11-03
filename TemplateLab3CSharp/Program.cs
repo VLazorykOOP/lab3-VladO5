@@ -92,7 +92,7 @@ class Program
 }
 */
 
-using static System.Net.Mime.MediaTypeNames;
+using static System.Net.Mime.MediaTypeNames;  /// ?
 
 class bookshop
 {
